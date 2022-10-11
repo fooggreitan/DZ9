@@ -7,33 +7,28 @@
 
 // 32679 -> 6
 
-Console.Write("Введите любое число: ");
-int number = Convert.ToInt32(Console.ReadLine());
-int c;
 
-    if (number < 100)
+Console.Write("Ведите число: ");
+int fist = Convert.ToInt32(Console.ReadLine());
+int count = fist.ToString().Length;
+Console.Write(MakeArray(fist, count));
+
+int MakeArray(int a, int b)
+{
+int result = 0;
+    if (b <= 2)
     {
-        Console.Write("Третьей цифры нет ");
+        Console.Write("Нет третьего числа: ");
     }
-    else if (number < 1000)
-    {
-        c = number % 10;
-        Console.Write($"Третье число:{c}");
-    }
-    else if (number < 10000)
-    {
-        c = (number % 100 - number % 10)/10;
-        Console.Write($"Третье число:{c}");
-    }
-    else if (number < 100000)
-    {
-        c = (number % 1000 - number % 100)/100;
-        
-        Console.Write($"Третье число:{c}");
-    }
-    
     else
     {
-        c = number % 10;
-        Console.Write($"Третье число:{c}");
+        int c = 1;
+        for (int i = b; i > 3; i--)
+        {
+            c = c * 10;
+        }
+
+        result = (a / c) % 10;
     }
+return result;
+}
