@@ -5,10 +5,11 @@
 // 782 -> 8
 // 918 -> 1
 
-Console.Write("Введите любое число: ");
+//Console.Write("Введите любое число: ");
 int a = Convert.ToInt32(Console.ReadLine());
 int c;
 
 c = (a % 100 - a % 10)/10;
 
 Console.WriteLine($"Max число: {c}");
+
