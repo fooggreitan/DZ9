@@ -1,21 +1,14 @@
-﻿
-Console.Write("Введите число первое: ");
+﻿// Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе 
+//показывает вторую цифру этого числа. Выполнить с помощью числовых операций (целочисленное деление, остаток от деления).
+
+// 456 -> 5
+// 782 -> 8
+// 918 -> 1
+
+Console.Write("Введите любое число: ");
 int a = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите число второе: ");
-int b = Convert.ToInt32(Console.ReadLine());
+int c;
 
-int max = a;
-int min = b;
+c = (a % 100 - a % 10)/10;
 
-if (a < b) 
-{
-    Console.WriteLine($"Max число: {b}");
-    Console.WriteLine($"Min число: {a}");
-}
-
-else
-{
-    Console.WriteLine($"Max число: {a}");
-    Console.WriteLine($"Min число: {b}");
-}
-    
+Console.WriteLine($"Max число: {c}");
