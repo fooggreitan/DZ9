@@ -1,21 +1,39 @@
-﻿// Задача 4: Напишите программу, которая принимает на вход три числа и выдаёт максимальное из этих чисел.
+﻿// Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, 
+//что третьей цифры нет. Выполнить с помощью числовых операций (целочисленное деление, остаток от деления).
 
-// 2, 3, 7 -> 7
-// 44, 5, 78 -> 78
-// 22, 3, 9 -> 22
+// 645 -> 5
 
-Console.Write("Введите число первое: ");
-int a = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите число второе: ");
-int b = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите число третье: ");
-int c = Convert.ToInt32(Console.ReadLine());
+// 78 -> третьей цифры нет
 
-int max = a;
+// 32679 -> 6
 
-if (a > b && a > c)
-    Console.WriteLine($"Max число: {a}");
-else if (b > c) 
-    Console.WriteLine($"Max число: {b}");
-else
-    Console.WriteLine($"Max число: {c}");
+Console.Write("Введите любое число: ");
+int number = Convert.ToInt32(Console.ReadLine());
+int c;
+
+    if (number < 100)
+    {
+        Console.Write("Третьей цифры нет ");
+    }
+    else if (number < 1000)
+    {
+        c = number % 10;
+        Console.Write($"Третье число:{c}");
+    }
+    else if (number < 10000)
+    {
+        c = (number % 100 - number % 10)/10;
+        Console.Write($"Третье число:{c}");
+    }
+    else if (number < 100000)
+    {
+        c = (number % 1000 - number % 100)/100;
+        
+        Console.Write($"Третье число:{c}");
+    }
+    
+    else
+    {
+        c = number % 10;
+        Console.Write($"Третье число:{c}");
+    }
