@@ -1,34 +1,49 @@
-﻿// Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, 
-//что третьей цифры нет. Выполнить с помощью числовых операций (целочисленное деление, остаток от деления).
+﻿// Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
 
-// 645 -> 5
+// [3, 7, 23, 12] -> 19
 
-// 78 -> третьей цифры нет
+// [-4, -6, 89, 6] -> 0
 
-// 32679 -> 6
-
-
-Console.Write("Ведите число: ");
-int fist = Convert.ToInt32(Console.ReadLine());
-int count = fist.ToString().Length;
-Console.Write(MakeArray(fist, count));
-
-int MakeArray(int a, int b)
+int[] CreateArrayRndInt(int size, int min, int max)
 {
-int result = 0;
-    if (b <= 2)
-    {
-        Console.Write("Нет третьего числа: ");
-    }
-    else
-    {
-        int c = 1;
-        for (int i = b; i > 3; i--)
-        {
-            c = c * 10;
-        }
 
-        result = (a / c) % 10;
+    int[] array = new int[size];
+    var rnd = new Random();
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = rnd.Next(min, max);
     }
-return result;
+    return array;
 }
+
+int Sum(int[] array)
+{
+    int sum = 0;
+    
+    for (int i = 0; i < array.Length; i++)
+    {
+        if(array[i] % 2 == 1) sum = sum + array[i];
+    }
+    
+    return sum;
+}
+
+void PrintArray(int[] array)
+{
+    Console.Write("[");
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i < array.Length - 1) Console.Write($"{array[i]}, "); 
+        else Console.Write($"{array[i]}");
+    }
+    Console.WriteLine("]");
+}   
+
+int[] arr = CreateArrayRndInt(4, 1, 1000); 
+PrintArray(arr);
+
+int sum = Sum(arr);
+
+//if (find) Console.WriteLine("да"); //else Console.WriteLine("нет");
+
+Console.Write($"Cумма = {sum}");

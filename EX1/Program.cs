@@ -1,15 +1,45 @@
-﻿// Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе 
-//показывает вторую цифру этого числа. Выполнить с помощью числовых операций (целочисленное деление, остаток от деления).
+﻿// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
+// [345, 897, 568, 234] -> 2
 
-// 456 -> 5
-// 782 -> 8
-// 918 -> 1
+int[] CreateArrayRndInt(int size, int min, int max)
+{
 
-//Console.Write("Введите любое число: ");
-int a = Convert.ToInt32(Console.ReadLine());
-int c;
+    int[] array = new int[size];
+    var rnd = new Random();
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = rnd.Next(min, max + 1);
+    }
+    return array;
+}
 
-c = (a % 100 - a % 10)/10;
+int Count(int[] array)
+{
+    int count = 0;
+    
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i] % 2 == 0) count++;
+    }
+    
+    return count;
+}
 
-Console.WriteLine($"Max число: {c}");
+void PrintArray(int[] array)
+{
+    Console.Write("[");
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i < array.Length - 1) Console.Write($"{array[i]}, "); 
+        else Console.Write($"{array[i]}");
+    }
+    Console.WriteLine("]");
+}   
 
+int[] arr = CreateArrayRndInt(4, 100, 1000); 
+PrintArray(arr);
+int count = Count(arr);
+
+//if (find) Console.WriteLine("да"); //else Console.WriteLine("нет");
+
+Console.Write($"Колличество четных числел = {count}");
