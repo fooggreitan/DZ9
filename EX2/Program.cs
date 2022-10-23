@@ -11,7 +11,7 @@ int[] CreateArrayRndInt(int size, int min, int max)
     var rnd = new Random();
     for (int i = 0; i < size; i++)
     {
-        array[i] = rnd.Next(min, max);
+        array[i] = rnd.Next(min, max + 1);
     }
     return array;
 }
@@ -20,9 +20,9 @@ int Sum(int[] array)
 {
     int sum = 0;
     
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i <= array.Length; i++)
     {
-        if(array[i] % 2 == 1) sum = sum + array[i];
+        if(i % 2 == 1) sum += array[i];
     }
     
     return sum;
@@ -39,11 +39,9 @@ void PrintArray(int[] array)
     Console.WriteLine("]");
 }   
 
-int[] arr = CreateArrayRndInt(4, 1, 1000); 
+int[] arr = CreateArrayRndInt(4, -100, 100); 
 PrintArray(arr);
 
 int sum = Sum(arr);
 
-//if (find) Console.WriteLine("да"); //else Console.WriteLine("нет");
-
-Console.Write($"Cумма = {sum}");
+Console.Write($"Cумма элементов, стоящих на нечётных позициях = {sum}");

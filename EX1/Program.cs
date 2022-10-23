@@ -15,7 +15,7 @@ int[] CreateArrayRndInt(int size, int min, int max)
 
 int Count(int[] array)
 {
-    int count = 0;
+    int count = default;
     
     for (int i = 0; i < array.Length; i++)
     {
@@ -39,7 +39,5 @@ void PrintArray(int[] array)
 int[] arr = CreateArrayRndInt(4, 100, 1000); 
 PrintArray(arr);
 int count = Count(arr);
-
-//if (find) Console.WriteLine("да"); //else Console.WriteLine("нет");
 
 Console.Write($"Колличество четных числел = {count}");
