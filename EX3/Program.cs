@@ -1,48 +1,59 @@
-﻿// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-// [3.5, 7.1, 22.9, 2.3, 78.5] -> 76.2
-
-double[] CreateArrayRndDouble(int size, double min, double max)
+int[,] CreateArrayRndInt(int row, int columns, int min, int max)
 {
-
-    var array = new double[size];
+    var array = new int[row, columns];
     var rnd = new Random();
-
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        double rmd = rnd.NextDouble()* (max - min) + min;
-        array[i] = Math.Round(rmd, 1, MidpointRounding.ToZero);
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = rnd.Next(min, max + 1);
+        }
     }
     return array;
 }
 
-double DubleRaz(double[] array)
+double[] CreateArrayRndIn(int[,] array)
 {
-    double maxFillarray = array[0];
-    double minFillarray = array[0];
-
-    for (int i = 0; i < array.Length; i++)
+    double[] avg  = new double[array.GetLength(1)];
+    
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-        if (array[i] > maxFillarray) maxFillarray = array[i];
-        else if (array[i] < minFillarray) minFillarray = array[i];
+        double sum = default;
+
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            sum += array[i,j];
+        }
+
+        avg[j] = Math.Round(sum / array.GetLength(0), 1);
     }
 
-    return maxFillarray - minFillarray;
+    return avg;
 }
 
-void PrintArrayDouble(double[] array)
+void PrintArray(int[,] array)
 {
-    Console.Write("[");
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        if (i < array.Length - 1) Console.Write($"{array[i]}; "); 
-        else Console.Write($"{array[i]}");
+        Console.Write("[");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (j < array.GetLength(1) - 1) Console.Write($"{array[i, j],6}, "); // форматирование
+            else Console.Write($"{array[i, j],6}"); // форматирование
+        }
+        Console.WriteLine("]");
     }
-    Console.WriteLine("]");
-}   
+}
 
-double[] arr = CreateArrayRndDouble(4, 3, 7); 
-PrintArrayDouble(arr);
+int[,] arrat2D = CreateArrayRndInt(3, 4, 1, 100);
+PrintArray(arrat2D);
 
-double des = Math.Round(DubleRaz(arr), 1, MidpointRounding.ToZero);
-Console.WriteLine($"Максимальное значение массива -> {des}");
+double[] avg = CreateArrayRndIn(arrat2D);
+Console.WriteLine($"{avg[0],6}; {avg[1],6}; {avg[2],6}; {avg[3],6}");
