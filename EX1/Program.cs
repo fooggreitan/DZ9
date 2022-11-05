@@ -32,5 +32,5 @@ void PrintArray(double[,] array)
     }
 }
 
-double[,] arrat2D = CreateArrayRndInt(3, 4, 1, 100);
-PrintArray(arrat2D);
+double[,] array2D = CreateArrayRndInt(3, 4, 1, 100);
+PrintArray(array2D);
