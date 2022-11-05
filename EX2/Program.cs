@@ -1,47 +1,51 @@
-﻿// Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
+// и возвращает значение этого элемента или же указание, что такого элемента нет.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 1, 7 -> такого элемента в массиве нет
 
-// [3, 7, 23, 12] -> 19
+int[] meaningNumbersArray = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
 
-// [-4, -6, 89, 6] -> 0
-
-int[] CreateArrayRndInt(int size, int min, int max)
+int[,] CreateArrayRndInt(int row, int columns, int min, int max)
 {
-
-    int[] array = new int[size];
+    var array = new int[row, columns];
     var rnd = new Random();
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        array[i] = rnd.Next(min, max + 1);
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = rnd.Next(min, max + 1);
+        }
     }
     return array;
 }
 
-int Sum(int[] array)
+bool CheckingPositions(int[,] array)
 {
-    int sum = 0;
-    
-    for (int i = 0; i <= array.Length; i++)
-    {
-        if(i % 2 == 1) sum += array[i];
-    }
-    
-    return sum;
+    if (meaningNumbersArray[0] < array.GetLength(0) && meaningNumbersArray[1] < array.GetLength(1)) return true;
+    else return false;
 }
 
-void PrintArray(int[] array)
+void PrintArray(int[,] array)
 {
-    Console.Write("[");
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        if (i < array.Length - 1) Console.Write($"{array[i]}, "); 
-        else Console.Write($"{array[i]}");
+        Console.Write("[");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (j < array.GetLength(1) - 1) Console.Write($"{array[i, j], 4}, "); // форматирование
+            else Console.Write($"{array[i, j], 4}"); // форматирование
+        }
+        Console.WriteLine("]");
     }
-    Console.WriteLine("]");
-}   
+}
 
-int[] arr = CreateArrayRndInt(4, -100, 100); 
-PrintArray(arr);
+int[,] array2D = CreateArrayRndInt(3, 4, 1, 100);
+PrintArray(array2D);
 
-int sum = Sum(arr);
+bool сheckingPositions = CheckingPositions(array2D);
 
-Console.Write($"Cумма элементов, стоящих на нечётных позициях = {sum}");
+if (сheckingPositions) Console.WriteLine($"{array2D[meaningNumbersArray[0], meaningNumbersArray[1]]}");
+else Console.WriteLine("Такого элемента в массиве нет");
