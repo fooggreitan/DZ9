@@ -19,9 +19,9 @@ int[,] CreateArrayRndInt(int row, int columns, int min, int max)
     return array;
 }
 
-double[] CreateArrayRndIn(int[,] array)
+double[] ArithmeticMeanValues(int[,] array)
 {
-    double[] avg  = new double[array.GetLength(1)];
+    double[] amv = new double[array.GetLength(1)];
     
     for (int j = 0; j < array.GetLength(1); j++)
     {
@@ -32,10 +32,10 @@ double[] CreateArrayRndIn(int[,] array)
             sum += array[i,j];
         }
 
-        avg[j] = Math.Round(sum / array.GetLength(0), 1);
+        amv[j] = Math.Round(sum / array.GetLength(0), 1);
     }
 
-    return avg;
+    return amv;
 }
 
 void PrintArray(int[,] array)
@@ -52,8 +52,8 @@ void PrintArray(int[,] array)
     }
 }
 
-int[,] arrat2D = CreateArrayRndInt(3, 4, 1, 100);
-PrintArray(arrat2D);
+int[,] array2D = CreateArrayRndInt(3, 4, 1, 100);
+PrintArray(array2D);
 
-double[] avg = CreateArrayRndIn(arrat2D);
+double[] avg = ArithmeticMeanValues(array2D);
 Console.WriteLine($"{avg[0],6}; {avg[1],6}; {avg[2],6}; {avg[3],6}");
