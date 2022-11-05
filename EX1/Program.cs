@@ -1,43 +1,36 @@
-﻿// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
-// [345, 897, 568, 234] -> 2
+﻿// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+// m = 3, n = 4.
+// 0,5 7 -2 -0,2
+// 1 -3,3 8 -9,9
+// 8 7,8 -7,1 9
 
-int[] CreateArrayRndInt(int size, int min, int max)
+double[,] CreateArrayRndInt(int row, int columns, double min, double max)
 {
-
-    int[] array = new int[size];
+    var array = new double[row, columns];
     var rnd = new Random();
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        array[i] = rnd.Next(min, max + 1);
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = Math.Round(rnd.NextDouble(), 2);
+        }
     }
     return array;
 }
 
-int Count(int[] array)
-{
-    int count = default;
-    
-    for (int i = 0; i < array.Length; i++)
+void PrintArray(double[,] array)
+{  
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        if (array[i] % 2 == 0) count++;
+        Console.Write("[");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (j < array.GetLength(1) - 1) Console.Write($"{array[i,j], 6}, "); // форматирование
+            else Console.Write($"{array[i,j], 6}"); // форматирование
+        }
+        Console.WriteLine("]");
     }
-    
-    return count;
 }
 
-void PrintArray(int[] array)
-{
-    Console.Write("[");
-    for (int i = 0; i < array.Length; i++)
-    {
-        if (i < array.Length - 1) Console.Write($"{array[i]}, "); 
-        else Console.Write($"{array[i]}");
-    }
-    Console.WriteLine("]");
-}   
-
-int[] arr = CreateArrayRndInt(4, 100, 1000); 
-PrintArray(arr);
-int count = Count(arr);
-
-Console.Write($"Колличество четных числел = {count}");
+double[,] arrat2D = CreateArrayRndInt(3, 4, 1, 100);
+PrintArray(arrat2D);
