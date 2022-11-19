@@ -22,5 +22,5 @@ int SumDigits(int numOne, int numTwo)
     return SumDigits(numOne - 1, SumDigits(numOne, numTwo - 1));
 }
 
-int res = SumDigits(number1, number2);
-Console.WriteLine($"A({number1},{number2}) = {res}");
+int result = SumDigits(number1, number2);
+Console.WriteLine($"A({number1},{number2}) = {result}");
