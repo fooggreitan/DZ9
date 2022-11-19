@@ -1,59 +1,26 @@
-﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+﻿// Задача 68: Напишите программу вычисления функции Аккермана 
+// с помощью рекурсии. Даны два неотрицательных числа т и п.
+// m = 3, n = 2 -> A(m,n) = 29
 
-int[,] CreateArrayRndInt(int row, int columns, int min, int max)
+Console.Write("Введите целовен число: ");
+int number1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите целовен число: ");
+int number2 = Convert.ToInt32(Console.ReadLine());
+
+
+int SumDigits(int numOne, int numTwo)
 {
-    var array = new int[row, columns];
-    var rnd = new Random();
-    for (int i = 0; i < array.GetLength(0); i++)
+    if (numOne == 0)
     {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            array[i, j] = rnd.Next(min, max + 1);
-        }
+        return numTwo + 1;
     }
-    return array;
-}
-
-double[] ArithmeticMeanValues(int[,] array)
-{
-    double[] amv = new double[array.GetLength(1)];
     
-    for (int j = 0; j < array.GetLength(1); j++)
+    if (numOne > 0 && numTwo == 0)
     {
-        double sum = default;
-
-        for (int i = 0; i < array.GetLength(0); i++)
-        {
-            sum += array[i,j];
-        }
-
-        amv[j] = Math.Round(sum / array.GetLength(0), 1);
+        return SumDigits(numOne - 1, 1);
     }
-
-    return amv;
+    return SumDigits(numOne - 1, SumDigits(numOne, numTwo - 1));
 }
 
-void PrintArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        Console.Write("[");
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            if (j < array.GetLength(1) - 1) Console.Write($"{array[i, j],6}, "); // форматирование
-            else Console.Write($"{array[i, j],6}"); // форматирование
-        }
-        Console.WriteLine("]");
-    }
-}
-
-int[,] array2D = CreateArrayRndInt(3, 4, 1, 100);
-PrintArray(array2D);
-
-double[] avg = ArithmeticMeanValues(array2D);
-Console.WriteLine($"{avg[0],6}; {avg[1],6}; {avg[2],6}; {avg[3],6}");
+int res = SumDigits(number1, number2);
+Console.WriteLine($"A({number1},{number2}) = {res}");
