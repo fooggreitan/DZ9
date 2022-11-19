@@ -3,9 +3,9 @@
 // m = 3, n = 2 -> A(m,n) = 29
 
 Console.Write("Введите целовен число: ");
-int number1 = Convert.ToInt32(Console.ReadLine());
+int numberOne = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите целовен число: ");
-int number2 = Convert.ToInt32(Console.ReadLine());
+int numberTwo = Convert.ToInt32(Console.ReadLine());
 
 
 int SumDigits(int numOne, int numTwo)
@@ -22,5 +22,5 @@ int SumDigits(int numOne, int numTwo)
     return SumDigits(numOne - 1, SumDigits(numOne, numTwo - 1));
 }
 
-int result = SumDigits(number1, number2);
-Console.WriteLine($"A({number1},{number2}) = {result}");
+int result = SumDigits(numberOne, numberTwo);
+Console.WriteLine($"A({numberOne},{numberTwo}) = {result}");
